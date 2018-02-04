@@ -30,8 +30,8 @@ COPY tessdata/* /usr/share/tesseract-ocr/tessdata/
 ENV TESSDATA_PREFIX="/usr/share/tesseract-ocr/"
 
 # Set up our notebook config.
-COPY jupyter_notebook_config.py /tmp/
-RUN cat jupyter_notebook_config.py >> /etc/jupyter/jupyter_notebook_config.py && \
+COPY jupyter_notebook_config.py /tmp/jupyter_notebook_config.py
+RUN cat /tmp/jupyter_notebook_config.py >> /etc/jupyter/jupyter_notebook_config.py && \
     fix-permissions /etc/jupyter/
 
 USER $NB_USER
