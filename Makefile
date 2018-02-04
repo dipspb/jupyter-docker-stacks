@@ -4,7 +4,7 @@
 
 # Use bash for inline if-statements in test target
 SHELL:=bash
-OWNER:=jupyter
+OWNER:=dipspb
 ARCH:=$(shell uname -m)
 
 # Need to list the images in build dependency order
@@ -25,7 +25,7 @@ ALL_IMAGES:=$(ALL_STACKS)
 
 help:
 # http://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
-	@echo "jupyter/docker-stacks"
+	@echo "dipspb/jupyter-docker-stacks"
 	@echo "====================="
 	@echo "Replace % with a stack directory name (e.g., make build/minimal-notebook)"
 	@echo
@@ -44,6 +44,10 @@ arch_patch/%: ## apply hardware architecture specific patches to the Dockerfile
 build/%: DARGS?=
 build/%: ## build the latest image for a stack
 	docker build $(DARGS) --rm --force-rm -t $(OWNER)/$(notdir $@):latest ./$(notdir $@)
+    if [ -e ./$(notdir $@)/Dockerfile.gpu ]; then \
+    	docker build $(DARGS) --rm --force-rm -t $(OWNER)/$(notdir $@)-gpu:latest ./$(notdir $@) \
+    	    -f ./$(notdir $@)/Dockerfile.gpu
+    fi;\
 
 build-all: $(foreach I,$(ALL_IMAGES),arch_patch/$(I) build/$(I) ) ## build all stacks
 build-test-all: $(foreach I,$(ALL_IMAGES),arch_patch/$(I) build/$(I) test/$(I) ) ## build and test all stacks
