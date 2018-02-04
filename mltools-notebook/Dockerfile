@@ -4,6 +4,8 @@ FROM jupyter/scipy-notebook
 
 LABEL maintainer="Dmitry Prokhorov <dipspb@gmail.com>"
 
+USER root
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
         curl \
         libfreetype6-dev \
@@ -23,11 +25,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-COPY requirements-cpu.txt  /tmp/requirements.txt
-RUN conda install --yes --file /tmp/requirements.yml -v && \
-    conda clean -tipsy && \
-    fix-permissions $CONDA_DIR
-
 # Copy English tessercat ocr data
 COPY tessdata/* /usr/share/tesseract-ocr/tessdata/
 ENV TESSDATA_PREFIX="/usr/share/tesseract-ocr/"
@@ -36,6 +33,14 @@ ENV TESSDATA_PREFIX="/usr/share/tesseract-ocr/"
 COPY jupyter_notebook_config.py /tmp/
 RUN cat jupyter_notebook_config.py >> /etc/jupyter/jupyter_notebook_config.py && \
     fix-permissions /etc/jupyter/
+
+USER $NB_USER
+
+COPY environment-cpu.yml  /tmp/environment.yml
+# RUN conda install --yes --file /tmp/requirements.txt -v && \
+RUN conda env create -f /tmp/environment.yml -v && \
+    conda clean -tipsy && \
+    fix-permissions $CONDA_DIR
 
 # Directory for keeping the MXNet model parameters
 RUN mkdir -p /home/$NB_USER/.mxnet/models
