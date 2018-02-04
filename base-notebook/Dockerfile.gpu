@@ -3,7 +3,12 @@
 
 # Ubuntu 16.04 (xenial)
 # Rebased to CUDA/CUDNN stack by Dmitry Prokhorov <dipspb@gmail.com>
-FROM nvidia/cuda:8.0-cudnn7-devel-ubuntu16.04
+FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
+
+# Make sure CUDNN is detected
+ENV LD_LIBRARY_PATH /usr/local/cuda/lib64/:$LD_LIBRARY_PATH
+RUN ln -s /usr/local/cuda/lib64/libcudnn.so.6 /usr/local/cuda/lib64/libcudnn.so
+#RUN ln -s /usr/lib/x86_64-linux-gnu/libcudnn.so.7 /usr/local/cuda/lib64/libcudnn.so
 
 LABEL maintainer="Jupyter Project <jupyter@googlegroups.com>"
 
