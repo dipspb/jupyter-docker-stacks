@@ -40,7 +40,6 @@ ENV LD_LIBRARY_PATH /usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
 USER $NB_USER
 
 COPY environment-gpu.yml  /tmp/environment.yml
-# RUN conda install --yes --file /tmp/requirements.txt -v && \
 RUN conda env update -f /tmp/environment.yml -v && \
     conda clean -tipsy && \
     fix-permissions $CONDA_DIR

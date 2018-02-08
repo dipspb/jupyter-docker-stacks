@@ -11,7 +11,8 @@ channels:
     - mcs07
     - pjmtdw
 dependencies:
-#    - numpy=1.14.*
+    - nomkl
+    - numpy=1.14.*
 #    - matplotlib=2.1.*
 #    - bokeh=0.12.*
     - opencv=3.3.*

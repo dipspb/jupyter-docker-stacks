@@ -37,7 +37,6 @@ RUN cat /tmp/jupyter_notebook_config.py >> /etc/jupyter/jupyter_notebook_config.
 USER $NB_USER
 
 COPY environment-cpu.yml  /tmp/environment.yml
-# RUN conda install --yes --file /tmp/requirements.txt -v && \
 RUN conda env update -f /tmp/environment.yml -v && \
     conda clean -tipsy && \
     fix-permissions $CONDA_DIR
