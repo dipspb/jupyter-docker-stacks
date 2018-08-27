@@ -43,7 +43,7 @@ arch_patch/%: ## apply hardware architecture specific patches to the Dockerfile
 
 build/%: DARGS?=
 build/%: ## build the latest image for a stack
-	docker build $(DARGS) --rm --force-rm -t $(OWNER)/$(notdir $@):latest ./$(notdir $@)
+	# docker build $(DARGS) --rm --force-rm -t $(OWNER)/$(notdir $@):latest ./$(notdir $@)
 	@if [ -e ./$(notdir $@)/Dockerfile.gpu ]; then \
 		docker build $(DARGS) --rm --force-rm -t $(OWNER)/$(notdir $@)-gpu:latest ./$(notdir $@) \
 			-f ./$(notdir $@)/Dockerfile.gpu; \
