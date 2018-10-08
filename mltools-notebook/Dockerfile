@@ -9,7 +9,7 @@ USER root
 RUN apt-get update && apt-get install -y --no-install-recommends \
         curl \
         libfreetype6-dev \
-        libpng12-dev \
+        libpng-dev \
         libzmq3-dev \
         pkg-config \
         python3-dev \
@@ -34,7 +34,7 @@ COPY jupyter_notebook_config.py /tmp/jupyter_notebook_config.py
 RUN cat /tmp/jupyter_notebook_config.py >> /etc/jupyter/jupyter_notebook_config.py && \
     fix-permissions /etc/jupyter/
 
-USER $NB_USER
+USER $NB_UID
 
 COPY environment-cpu.yml  /tmp/environment.yml
 RUN conda env update -f /tmp/environment.yml -v && \
@@ -51,5 +51,5 @@ EXPOSE 8888
 # Flask Server
 EXPOSE 4567
 
-USER $NB_USER
+USER $NB_UID
 

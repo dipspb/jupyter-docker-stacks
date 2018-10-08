@@ -9,7 +9,7 @@ USER root
 RUN apt-get update && apt-get install -y --no-install-recommends \
         curl \
         libfreetype6-dev \
-        libpng12-dev \
+        libpng-dev \
         libzmq3-dev \
         pkg-config \
         python3-dev \
@@ -37,10 +37,10 @@ RUN cat /tmp/jupyter_notebook_config.py >> /etc/jupyter/jupyter_notebook_config.
 # For CUDA profiling, TensorFlow requires CUPTI.
 ENV LD_LIBRARY_PATH /usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
 
-USER $NB_USER
+USER $NB_UID
 
 COPY environment-gpu.yml  /tmp/environment.yml
-RUN conda env update -f /tmp/environment.yml -v && \
+RUN conda env update --debug -f /tmp/environment.yml -v && \
     conda clean -tipsy && \
     fix-permissions $CONDA_DIR
 
@@ -54,5 +54,5 @@ EXPOSE 8888
 # Flask Server
 EXPOSE 4567
 
-USER $NB_USER
+USER $NB_UID
 

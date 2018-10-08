@@ -7,6 +7,10 @@ LABEL maintainer="Jupyter Project <jupyter@googlegroups.com>"
 
 USER root
 
+## Add universe repository to install python3.6
+#RUN apt-get update && apt-get install -y software-properties-common && \
+#    add-apt-repository ppa:deadsnakes/ppa
+
 # Install all OS dependencies for fully functional notebook server
 RUN apt-get update && apt-get install -yq --no-install-recommends \
     build-essential \
