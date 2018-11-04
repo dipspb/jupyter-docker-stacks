@@ -41,10 +41,15 @@ dependencies:
     - moviepy=0.2.*
 #    - protobuf=3.5.*
 #    - mxnet-cudnn=1.2.*
+#    - mxnet=1.2.*
     - ffmpeg=4.0.*
     - imutils=0.4.*
     - pysoundfile=0.10.*
+    - fire=0.1.*
+    - psutil=5.4.*
     - pip:
+        - slidingwindow==0.0.13
+        - git+https://github.com/tensorpack/tensorpack
         - librosa==0.6.*
         - https://pypi.python.org/packages/c5/9e/42d7bcddb09a3ff52d0c60c810ba5d0fded28abbe320c85bbf7368192956/sklearn_pandas-1.6.0-py2.py3-none-any.whl
         - git+https://github.com/aleju/imgaug
