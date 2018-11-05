@@ -43,7 +43,7 @@ RUN conda install --quiet --yes \
     'protobuf=3.*' \
     'xlrd' \
     'ipyleaflet=0.9.*' \
-    'nbdime=1.0.*' \
+    'nbdime=1.0.2' \
       && \
     conda install --quiet --yes -c krinsman 'jupyterlab-variableinspector=v0.1.*'  && \
     conda remove --quiet --yes --force qt pyqt && \
@@ -54,8 +54,8 @@ RUN conda install --quiet --yes \
     jupyter labextension install @jupyter-widgets/jupyterlab-manager@^0.37.0 && \
     jupyter labextension install jupyterlab_bokeh@0.6.2 && \
     jupyter labextension install jupyter-leaflet@0.9.1 && \
-    jupyter labextension install nbdime-jupyterlab@1.0.3 && \
-    jupyter labextension install jupyterlab-variableinspector@v0.1.0 && \
+    jupyter labextension install nbdime-jupyterlab@0.5.0 && \
+    # jupyter labextension install jupyterlab_variableinspector && \
     npm cache clean --force && \
     rm -rf $CONDA_DIR/share/jupyter/lab/staging && \
     rm -rf /home/$NB_USER/.cache/yarn && \
