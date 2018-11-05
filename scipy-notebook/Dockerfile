@@ -42,7 +42,7 @@ RUN conda install --quiet --yes \
     'beautifulsoup4=4.6.*' \
     'protobuf=3.*' \
     'xlrd' \
-    'ipyleaflet=0.9.*'
+    'ipyleaflet=0.9.*' \
     'krinsman::jupyterlab-variableinspector=0.1.*'  && \
     conda remove --quiet --yes --force qt pyqt && \
     conda clean -tipsy && \
