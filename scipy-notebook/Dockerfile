@@ -55,7 +55,7 @@ RUN conda install --quiet --yes \
     jupyter labextension install jupyterlab_bokeh@0.6.2 && \
     jupyter labextension install jupyter-leaflet@0.9.1 && \
     jupyter labextension install nbdime-jupyterlab@1.0.3 && \
-    jupyter labextension install jupyterlab-variableinspector@0.1.0 && \
+    jupyter labextension install jupyterlab-variableinspector@v0.1.0 && \
     npm cache clean --force && \
     rm -rf $CONDA_DIR/share/jupyter/lab/staging && \
     rm -rf /home/$NB_USER/.cache/yarn && \
