@@ -42,8 +42,8 @@ RUN conda install --quiet --yes \
     'beautifulsoup4=4.6.*' \
     'protobuf=3.*' \
     'xlrd' \
-    'ipyleaflet=0.9.*' \
-    'krinsman::jupyterlab-variableinspector=0.1.*'  && \
+    'ipyleaflet=0.9.*'  && \
+    conda install --quiet --yes -c krinsman 'jupyterlab-variableinspector=0.1.*'  && \
     conda remove --quiet --yes --force qt pyqt && \
     conda clean -tipsy && \
     # Activate ipywidgets extension in the environment that runs the notebook server
