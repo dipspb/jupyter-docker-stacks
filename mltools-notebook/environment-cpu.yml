@@ -47,6 +47,7 @@ dependencies:
     - pysoundfile=0.10.*
     - fire=0.1.*
     - psutil=5.4.*
+    - plotly=3.4.*
     - pip:
         - slidingwindow==0.0.13
         - git+https://github.com/tensorpack/tensorpack
@@ -58,4 +59,4 @@ dependencies:
         - edward==1.3.5
         - catboost==0.6.1.1
         - jupyter-tensorboard
-
+        - git+https://www.github.com/ildoonet/tf-openpose
