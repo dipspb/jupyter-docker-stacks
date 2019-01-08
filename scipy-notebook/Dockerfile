@@ -44,6 +44,8 @@ RUN conda install --quiet --yes \
     'xlrd' \
     'ipyleaflet=0.9.*' \
     'nbdime=1.0.2' \
+    'beautifulsoup4=4.6.*' \
+    'networkx=2.2' \
       && \
     conda install --quiet --yes -c krinsman 'jupyterlab-variableinspector=v0.1.*'  && \
     conda remove --quiet --yes --force qt pyqt && \
