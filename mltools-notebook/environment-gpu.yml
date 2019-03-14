@@ -35,7 +35,10 @@ dependencies:
 #    - pytorch=0.4.*
 #    - torchvision=0.2.*
 #    - sympy=1.1.*
-    - gensim=3.3.*
+    - nltk=3.4.*
+    - pyarrow=0.12.*
+    - fastparquet=0.2.*
+    - gensim=3.5.*
     - spacy=2.0.*
     - tesseract=4.0.*
     - moviepy=0.2.*
